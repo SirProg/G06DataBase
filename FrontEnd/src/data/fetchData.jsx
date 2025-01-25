@@ -6,19 +6,27 @@ export function fetchData(){
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetch_Data = () => {
+    const fetch_Data = async () => {
       try {
-        const response = fetch("https://g06databaseback-production.up.railway.app/api/calzados", {method: 'GET'});
+        const response = await fetch("https://g06databaseback-production.up.railway.app/api/calzados");
         
         if (!response.ok) {
           throw new Error("Error HTTP " + response.status);
         }
 
-        const result = response.json();
+        const result = await response.json();
+        
+        if(!Array.isArray(result)){
+          console.error("Unexpected data format:", data)
+          throw new Error("Received unexpected data format")
+        }
 
-        setData(result);
+        if(result.length > 0){
+          setData(result);
+        }
       } catch (error) {
         setError(error.message);
+        setLoading(false);
       } finally {
         setLoading(false);
       }
@@ -26,7 +34,6 @@ export function fetchData(){
 
     fetch_Data();
   },[]);
-
   return { data, loading, error };
     
 };

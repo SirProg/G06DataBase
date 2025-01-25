@@ -1,14 +1,11 @@
 import {fetchData} from "../data/fetchData"
 
-export default function Data(){    
-    const {d: data, loading, error} = fetchData();
-
-    console.log(data);
+export default function Data({data}){    
 
     return(    
         <div>
-            <div>
-                <ul className="flex flex-row gap-2 justify-between aling-center">
+            <div className="p-4 bg-gray-300">
+                <ul className="grid grid-cols-9 gap-2 font-bold text-center">
                     <li>IdCalzado</li>
                     <li>Talla</li>
                     <li>Color</li>
@@ -20,9 +17,9 @@ export default function Data(){
                     <li>Eliminar</li>
                 </ul>
             </div>
-            {loading ? <p>Cargando... </p> : data.map((calzado) => (
-                    <div key={calzado.IDCalzado}>
-                        <ul className="grid grid-cols-9">
+            {data.map((calzado) => (
+                    <div key={calzado.IDCalzado} className="p-4 bg-gray-400 text-center">
+                        <ul className="grid grid-cols-9 gap-2">
                             <li>{calzado.IDCalzado}</li>
                             <li>{calzado.Talla}</li>
                             <li>{calzado.Color}</li>
@@ -30,7 +27,7 @@ export default function Data(){
                             <li>{calzado.Tipo}</li>
                             <li>{calzado.Nombre}</li>
                             <li>{calzado.ExistenciasActuales}</li>
-                            <li><button>Editar</button></li>
+                            <li><button className="bg-">Editar</button></li>
                             <li><button>Eliminar</button></li>
                         </ul>
                     </div>
