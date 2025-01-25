@@ -6,9 +6,11 @@ function App() {
 
   return (
     <>
-      <Header/>
-      <Main/>
-      <Footer/>
+      <div className='grid grid-cols-1'>
+        <Header/>
+        <Main/>
+        <Footer/>
+      </div>
     </>
   )
 }
