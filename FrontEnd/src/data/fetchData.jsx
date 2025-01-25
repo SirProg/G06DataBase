@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 export function fetchData(){
   const [data, setData] = useState([]);
@@ -6,15 +6,15 @@ export function fetchData(){
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetch_Data = async () => {
+    const fetch_Data = () => {
       try {
-        const response = await fetch("https://g06databaseback-production.up.railway.app/api/calzados", {method: 'GET'});
+        const response = fetch("https://g06databaseback-production.up.railway.app/api/calzados", {method: 'GET'});
         
         if (!response.ok) {
           throw new Error("Error HTTP " + response.status);
         }
 
-        const result = await response.json();
+        const result = response.json();
 
         setData(result);
       } catch (error) {
