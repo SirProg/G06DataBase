@@ -1,10 +1,10 @@
+import { useState } from 'react'
 import { fetchData } from './data/fetchData'
 
 import Header from './components/Header'
 import Main from './components/Main'
 import Footer from './components/Footer'
 import Data from './components/Data'
-import { useState } from 'react'
 
 function App() {
   const {data: calzados, loading, error} = fetchData();
@@ -12,9 +12,9 @@ function App() {
   console.log(calzados)
   return (
     <>
-      <div className='grid grid-cols-1'>
+      <div className='flex flex-col min-h-screen'>
         <Header/>
-        <main>
+        <main className='flex-1'>
           {loading ? <p>Cargando...</p> : <Data data={calzados}/>}
           {error && <p>Error... {error}</p>}
         </main>
